@@ -1,10 +1,11 @@
-import { Home, DollarSign, MapPin, Ruler, FileText, Image } from "lucide-react";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import axios from "axios";
+import { DollarSign, FileText, Home, Image, MapPin, Ruler } from "lucide-react";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import Navbar from "../landing/NavBar";
+import { z } from "zod";
+import { API_BASE_URL } from "../../config/api";
+import Navbar from "../landing/Navbar";
 
 const schema = z.object({
   title: z.string().min(2, "Title must be at least 2 characters"),
@@ -37,7 +38,7 @@ const AddProperty = () => {
       formData.append("pic", data.pic[0]);
 
       const response = await axios.post(
-        "http://localhost:8080/api/add-property",
+        `${API_BASE_URL}/add-property`,
         formData,
         {
           headers: {

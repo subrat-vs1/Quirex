@@ -1,13 +1,46 @@
+import { gsap } from "gsap";
 import { Home } from "lucide-react";
+import { useEffect, useRef } from "react";
 import Typewriter from "typewriter-effect";
 
 const Slider = () => {
+  const sliderRef = useRef(null);
+  const contentRef = useRef(null);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const context = gsap.context(() => {
+      gsap.from(contentRef.current?.children || [], {
+        y: 28,
+        opacity: 0,
+        duration: 0.85,
+        stagger: 0.12,
+        ease: "power2.out",
+      });
+
+      gsap.from(imageRef.current, {
+        x: 40,
+        opacity: 0,
+        duration: 0.95,
+        ease: "power3.out",
+      });
+    }, sliderRef);
+
+    return () => context.revert();
+  }, []);
+
   return (
-    <div className="bg-linear-to-r from-blue-50 to-indigo-100 py-16 min-h-50">
+    <div
+      ref={sliderRef}
+      className="bg-linear-to-r from-blue-50 to-indigo-100 py-16 min-h-50"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-12">
           {/* Text Content */}
-          <div className="flex-1 text-center lg:text-left mb-8 lg:mb-0">
+          <div
+            ref={contentRef}
+            className="flex-1 text-center lg:text-left mb-8 lg:mb-0"
+          >
             <p className="text-lg md:text-xl text-gray-700 mb-4 flex items-center justify-center lg:justify-start">
               <Home className="mr-2 text-red-500" />
               Real Estate Agency
@@ -35,9 +68,9 @@ const Slider = () => {
           </div>
 
           {/* Image Content */}
-          <div className="flex-1 flex justify-center">
+          <div ref={imageRef} className="flex-1 flex justify-center">
             <img
-              src="/img/21_1.png"
+              src="/img/hero-banner.png"
               alt="Real Estate"
               className="w-full max-w-md lg:max-w-lg h-auto rounded-lg object-cover"
             />

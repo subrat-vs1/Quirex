@@ -1,26 +1,28 @@
-import React from "react";
-import Navbar from "./Navbar"
 import AOS from "aos";
 import "aos/dist/aos.css";
+import React from "react";
+import { useLocation } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Services = () => {
+  const location = useLocation();
   const cards = [
     {
       title: "Buy a home",
       text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      img: "/img/home.png",
+      img: "/img/service-buy-home.png",
       aos: "fade-right",
     },
     {
       title: "Rent a home",
       text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      img: "/img/22.png",
+      img: "/img/service-rent-home.png",
       aos: "zoom-in-up",
     },
     {
       title: "Sell a home",
       text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      img: "/img/23.png",
+      img: "/img/service-sell-home.png",
       aos: "fade-left",
     },
   ];
@@ -35,7 +37,7 @@ const Services = () => {
 
   return (
     <>
-      {location?.pathname != "/" && <Navbar />}
+      {location?.pathname !== "/" && <Navbar />}
       <div className="bg-linear-to-r from-blue-50 to-indigo-50 py-8 min-h-100 overflow-x-clip">
         <div className="text-center mb-8">
           <div className="px-6 py-2 bg-red-500 text-white font-bold rounded-lg justify-block inline-block mb-4">
@@ -51,7 +53,11 @@ const Services = () => {
                 data-aos={card.aos}
                 className="bg-white shadow-lg p-6 text-center rounded-lg"
               >
-                <img src={card.img} className="w-1/2 mx-auto" alt="" />
+                <img
+                  src={card.img}
+                  className="w-1/2 mx-auto"
+                  alt={card.title}
+                />
 
                 <h3 className="py-3 text-xl font-bold">{card.title}</h3>
 

@@ -6,86 +6,9 @@ It is designed for practical full-stack learning and portfolio-ready demonstrati
 
 ## Tech Stack
 
-- Frontend: React 19, Vite 7, Tailwind CSS 4, React Router, Axios, React Hook Form, Zod/Yup, Sonner, AOS
-- Backend: Node.js, Express 5, Mongoose, CORS, express-fileupload
+- Frontend: React 19, Vite 7, Tailwind CSS 4.
+- Backend: Node.js, Express 5, Mongoose.
 - Database: MongoDB
-- Authentication (current implementation): role-based login using email/password lookup + client-side session in localStorage
-- Styling direction: white/light surfaces with coral-orange accents
-
-## Dependencies
-
-### Frontend Dependencies
-
-- @hookform/resolvers
-- @tailwindcss/vite
-- aos
-- axios
-- lucide-react
-- react
-- react-countup
-- react-dom
-- react-hook-form
-- react-router-dom
-- sonner
-- tailwindcss
-- typewriter-effect
-- yup
-
-### Frontend Dev Dependencies
-
-- @eslint/js
-- @types/react
-- @types/react-dom
-- @vitejs/plugin-react
-- eslint
-- eslint-plugin-react-hooks
-- eslint-plugin-react-refresh
-- globals
-- vite
-
-### Backend Dependencies
-
-- cors
-- express
-- express-fileupload
-- mongoose
-- nodemon
-
-## Three-Zone Feature Set
-
-### General Zone (Public)
-
-- Home, About, Services, Login, Sign Up, Property listing pages
-- Browse property cards with media, price, and area details
-- Contact form for inquiries
-- Testimonial and counter sections as part of the landing flow
-
-### Admin Zone
-
-- Add property listings with image upload
-- View all property listings
-- View sold property records
-- Manage users list
-- Manage contact submissions
-- Update admin profile
-
-### User Zone
-
-- Browse properties after login
-- Buy property and persist purchase history
-- View bought properties
-- Update profile with image upload
-- Logout
-
-## Project Scope from Synopsis
-
-The project specification includes additional capabilities such as property filtering by location/budget/type, verified listings, user reviews/ratings, amenities display, and user blocking/unblocking. Some of these are roadmap items in the current codebase and are documented in [SRS.md](SRS.md), [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md), and [API_DOCUMENTATION.md](API_DOCUMENTATION.md).
-
-## Prerequisites
-
-- Node.js 18+
-- npm 9+
-- MongoDB running locally or a hosted MongoDB connection string
 
 ## Installation and Local Setup
 

@@ -1,5 +1,5 @@
-import Navbar from "./Navbar"
-import { Building2, Users, ShieldCheck, MapPin } from "lucide-react";
+import { Building2, MapPin, ShieldCheck, Users } from "lucide-react";
+import Navbar from "./Navbar";
 
 const About = () => {
   return (
@@ -9,7 +9,7 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-6">
           {/* Heading */}
           <div className="text-center mb-12">
-            <div className="inline-block bg-red-100 text-red-500 px-5 py-1 rounded-full font-semibold mb-3">
+            <div className="px-6 py-2 bg-red-500 text-white font-bold rounded-lg inline-block mb-4">
               About Us
             </div>
             <h1 className="text-4xl font-bold text-gray-800">
@@ -25,7 +25,7 @@ const About = () => {
           <div className="grid md:grid-cols-2 gap-10 items-center">
             {/* Image */}
             <img
-              src="/img/1.jpg.jpeg"
+              src="/img/about-team.jpeg"
               alt="About"
               className="rounded-xl shadow-lg"
             />

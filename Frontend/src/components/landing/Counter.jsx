@@ -6,7 +6,7 @@ const Counter = () => {
       <div className="w-full grid grid-cols-2 sm:grid-cols-4 min-h-80">
         <div className="flex flex-col items-center justify-center text-center p-6">
           <img
-            src="/img/c11.png"
+            src="/img/stat-total-area.png"
             alt="img1"
             className="w-24 h-24 object-cover mb-4"
           />
@@ -18,7 +18,7 @@ const Counter = () => {
 
         <div className="flex flex-col items-center justify-center text-center p-6">
           <img
-            src="/img/c2.png"
+            src="/img/stat-apartments-sold.png"
             alt="img1"
             className="w-24 h-24 object-cover mb-4"
           />
@@ -31,7 +31,7 @@ const Counter = () => {
 
         <div className="flex flex-col items-center justify-center text-center p-6">
           <img
-            src="/img/c3.png"
+            src="/img/stat-total-constructions.png"
             alt="img1"
             className="w-24 h-24 object-cover mb-4"
           />
@@ -43,7 +43,7 @@ const Counter = () => {
 
         <div className="flex flex-col items-center justify-center text-center p-6">
           <img
-            src="/img/c4.png"
+            src="/img/stat-apartment-rooms.png"
             alt="img1"
             className="w-24 h-24 object-cover mb-4"
           />
@@ -55,6 +55,6 @@ const Counter = () => {
       </div>
     </>
   );
-}
+};
 
-export default Counter
+export default Counter;

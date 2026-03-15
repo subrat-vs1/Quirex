@@ -1,11 +1,12 @@
-import { Mail, KeyRound } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import axios from "axios";
+import { KeyRound, Mail } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import Navbar from "./Navbar"
+import { z } from "zod";
+import { API_BASE_URL } from "../../config/api";
+import Navbar from "./Navbar";
 
 const schema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -25,10 +26,7 @@ const Login = () => {
 
   const handleLogin = async (data) => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/login",
-        data,
-      );
+      const response = await axios.post(`${API_BASE_URL}/login`, data);
       if (response?.data?.code === 200) {
         toast.success("Login successful");
         localStorage.setItem("userInfo", JSON.stringify(response?.data?.data));
