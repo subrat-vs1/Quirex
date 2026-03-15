@@ -1,4 +1,3 @@
-import React from "react";
 import { Quote } from "lucide-react";
 
 const Testimonial = () => {
@@ -7,24 +6,24 @@ const Testimonial = () => {
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, tempore voluptatum! Expedita nobis vel tempore nesciunt.",
       name: "Jacob William",
       role: "Selling Agent",
-      img: "/img/1.jpg_1.jpeg",
+      img: "/img/testimonial-jacob.jpeg",
     },
     {
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, tempore voluptatum! Expedita nobis vel tempore nesciunt.",
       name: "Kelian Anderson",
       role: "Selling Agent",
-      img: "/img/2.jpg_1.jpeg",
+      img: "/img/testimonial-kelian.jpeg",
     },
     {
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, tempore voluptatum! Expedita nobis vel tempore nesciunt.",
       name: "Adam Joseph",
       role: "Selling Agent",
-      img: "/img/3.jpg_2.jpeg",
+      img: "/img/testimonial-adam.jpeg",
     },
   ];
 
   return (
-    <section className="bg-[url('/img/20.jpeg')] py-16 min-h-50">
+    <section className="testimonial-surface bg-[url('/img/testimonial-background.jpeg')] py-16 min-h-50">
       {/* Heading */}
       <div className="text-center mb-12">
         <div className="px-6 py-2 bg-red-500 text-white font-bold rounded-lg justify-block inline-block mb-4">

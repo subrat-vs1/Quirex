@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
-import Navbar from "../landing/NavBar";
 import axios from "axios";
+import { useEffect } from "react";
+import Navbar from "../landing/Navbar";
 
-import { User, Mail, Phone, Lock, MapPin, Image } from "lucide-react";
+import { Image, Lock, Mail, MapPin, Phone, User } from "lucide-react";
 
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { z } from "zod";
+import { API_BASE_URL } from "../../config/api";
 
 const schema = z.object({
   name: z.string().min(2),
@@ -30,6 +31,8 @@ const UserProfile = () => {
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (!userData) return;
 
     setValue("name", userData?.name);
     setValue("email", userData?.email);
@@ -58,7 +61,7 @@ const UserProfile = () => {
 
     try {
       const response = await axios.put(
-        "http://localhost:8080/api/user-update",
+        `${API_BASE_URL}/user-update`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

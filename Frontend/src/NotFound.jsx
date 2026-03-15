@@ -1,22 +1,28 @@
-import React, { useEffect } from "react";
-import Navbar from "./components/landing/Navbar"
-import {useNavigate} from 'react-router-dom';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "./components/landing/Navbar";
 
 const NotFound = () => {
-   const navigate=useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
-      navigate('/login');
-  }, []);
+    const timer = setTimeout(() => {
+      navigate("/login");
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
   return (
     <>
       <Navbar />
-      <div className="row">
-        <div className="col-sm-3"></div>
-        <div className="col-sm-7">
-          <img src="/img/notfound.png" />
+      <div className="bg-gray-50 py-10 px-4">
+        <div className="max-w-3xl mx-auto">
+          <img
+            src="/img/not-found-illustration.png"
+            alt="Not Found"
+            className="w-full h-auto"
+          />
         </div>
-        <div className="col-sm-2"></div>
       </div>
     </>
   );

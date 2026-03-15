@@ -1,27 +1,25 @@
 import express from "express";
-import {
-  userModel,
-  propertyModel,
-  buyerModel
-} from "../model/table.js";
+import { buyerModel, propertyModel, userModel } from "../model/table.js";
 
 const router = express.Router();
 
 router.post("/user-register", async (req, res) => {
-  console.log("BODY:", req.body);
-  console.log("FILES:", req.files);
   try {
     const { name, email, password, contact, address } = req.body;
-    const { profile } = req.files;
-    profile.mv("uploads/" + profile?.name, (err) => {
-      if (err) {
-        res.json({
-          code: 400,
-          message: "Error in File Upload.",
-          data: "",
-        });
-      }
-    });
+    const profile = req.files?.profile;
+
+    if (profile) {
+      profile.mv("uploads/" + profile?.name, (err) => {
+        if (err) {
+          return res.json({
+            code: 400,
+            message: "Error in File Upload.",
+            data: "",
+          });
+        }
+      });
+    }
+
     const isExist = await userModel.findOne({ email });
     if (isExist) {
       res.json({
@@ -36,7 +34,7 @@ router.post("/user-register", async (req, res) => {
         password,
         contact,
         address,
-        profile: profile?.name,
+        profile: profile?.name || "",
       });
       const result = await data.save();
       res.json({
@@ -57,18 +55,30 @@ router.post("/user-register", async (req, res) => {
 router.put("/user-update", async (req, res) => {
   try {
     const { name, email, password, contact, address, userId } = req.body;
-    const { profile } = req.files;
-    profile.mv("uploads/" + profile?.name, (err) => {
-      if (err) {
-        res.json({
-          code: 400,
-          message: "Error In File Upload",
-        });
-      }
-    });
+    const profile = req.files?.profile;
+    const currentUser = await userModel.findById(userId);
+
+    if (profile) {
+      profile.mv("uploads/" + profile?.name, (err) => {
+        if (err) {
+          return res.json({
+            code: 400,
+            message: "Error In File Upload",
+          });
+        }
+      });
+    }
+
     const result = await userModel.findByIdAndUpdate(
       { _id: userId },
-      { name, email, password, contact, address, profile: profile?.name },
+      {
+        name,
+        email,
+        password,
+        contact,
+        address,
+        profile: profile?.name || currentUser?.profile || "",
+      },
       { new: true },
     );
     if (result) {

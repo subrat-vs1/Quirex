@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "../landing/NavBar";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { API_BASE_URL, MEDIA_BASE_URL } from "../../config/api";
+import SectionHeader from "../common/SectionHeader";
+import TableCard from "../common/TableCard";
+import TableImageCell from "../common/TableImageCell";
+import TableStatusRows from "../common/TableStatusRows";
+import Navbar from "../landing/Navbar";
 
 const UserList = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchData();
@@ -11,15 +17,15 @@ const UserList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:8080/api/admin-user-list",
-      );
+      const response = await axios.get(`${API_BASE_URL}/admin-user-list`);
 
       if (response?.data?.code === 200) {
         setData(response.data.data);
       }
     } catch (error) {
       console.error("Failed to load users");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -28,15 +34,9 @@ const UserList = () => {
       <Navbar />
       <section className="bg-gray-50 py-16">
         <div className="max-w-6xl mx-auto px-6">
-          {/* Heading */}
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-800">
-              Registered Users
-            </h2>
-          </div>
+          <SectionHeader title="Registered Users" className="mb-10" />
 
-          {/* Table Container */}
-          <div className="bg-white rounded-xl shadow-lg overflow-x-auto">
+          <TableCard>
             <table className="w-full text-sm">
               <thead className="bg-gray-800 text-white">
                 <tr className="text-left">
@@ -50,36 +50,39 @@ const UserList = () => {
               </thead>
 
               <tbody>
-                {data?.map((item, index) => (
-                  <tr key={item._id} className="border-b hover:bg-gray-50">
-                    <td className="p-4">{index + 1}</td>
+                <TableStatusRows
+                  loading={loading}
+                  isEmpty={!loading && data.length === 0}
+                  colSpan={6}
+                />
 
-                    <td className="p-4 font-medium text-gray-800">
-                      {item?.name}
-                    </td>
+                {!loading &&
+                  data?.map((item, index) => (
+                    <tr key={item._id} className="border-b hover:bg-gray-50">
+                      <td className="p-4">{index + 1}</td>
 
-                    <td className="p-4 text-gray-600">{item?.email}</td>
+                      <td className="p-4 font-medium text-gray-800">
+                        {item?.name}
+                      </td>
 
-                    <td className="p-4">{item?.contact}</td>
+                      <td className="p-4 text-gray-600">{item?.email}</td>
 
-                    <td className="p-4 text-gray-600">{item?.address}</td>
+                      <td className="p-4">{item?.contact}</td>
 
-                    <td className="p-4">
-                      <img
-                        src={`http://localhost:8080/img/${item?.profile}`}
-                        alt="profile"
-                        className="h-14 w-20 object-cover rounded-md border"
-                      />
-                    </td>
-                  </tr>
-                ))}
+                      <td className="p-4 text-gray-600">{item?.address}</td>
+
+                      <td className="p-4">
+                        <TableImageCell
+                          src={`${MEDIA_BASE_URL}/img/${item?.profile}`}
+                          alt="profile"
+                          className="h-14 w-20 object-cover rounded-md border"
+                        />
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
-          </div>
-
-          {data?.length === 0 && (
-            <p className="text-center text-gray-500 mt-6">No Record Found!</p>
-          )}
+          </TableCard>
         </div>
       </section>
     </>

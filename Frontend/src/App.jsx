@@ -1,32 +1,37 @@
-import { useEffect, useState } from "react";
-import { useLocation, Routes, Route } from "react-router-dom";
-import "aos/dist/aos.css";
 import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Toaster } from "sonner";
+import useLenis from "./hooks/useLenis";
+import { useTheme } from "./hooks/useTheme";
 
-import Home from "./components/landing/Home";
-import About from "./components/landing/About"
-import Services from "./components/landing/Services";
-import Property from "./components/landing/Property";
+import About from "./components/landing/About";
 import ContactUs from "./components/landing/ContactUs";
 import Footer from "./components/landing/Footer";
-import UserRegister from "./components/landing/UserRegister";
+import Home from "./components/landing/Home";
 import Login from "./components/landing/Login";
+import Property from "./components/landing/Property";
+import Services from "./components/landing/Services";
+import UserRegister from "./components/landing/UserRegister";
 
 import AddProperty from "./components/admin/AddProperty";
+import AdminContactUsList from "./components/admin/AdminContactUsList";
+import AdminProfile from "./components/admin/AdminProfile";
 import AdminPropertyList from "./components/admin/AdminPropertyList";
 import AdminSoldProperty from "./components/admin/AdminSoldProperty";
-import UserList from "./components/admin/UserList"
-import AdminProfile from "./components/admin/AdminProfile";
-import AdminContactUsList from "./components/admin/AdminContactUsList";
+import UserList from "./components/admin/UserList";
 
-import UserProfile from "./components/users/UserProfile";
 import UserBoughtList from "./components/users/UserBoughtList";
+import UserProfile from "./components/users/UserProfile";
 import NotFound from "./NotFound";
 
 function App() {
   const location = useLocation();
   const [userData, setUserData] = useState(null);
+  const { resolvedTheme } = useTheme();
+
+  useLenis();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
@@ -44,7 +49,7 @@ function App() {
 
   return (
     <>
-      <Toaster position="bottom-right" richColors />
+      <Toaster position="bottom-right" richColors theme={resolvedTheme} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

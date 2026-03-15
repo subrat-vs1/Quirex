@@ -1,11 +1,12 @@
-import { User, Mail, Phone, Pencil, MessageSquare } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import axios from "axios";
+import { Mail, MessageSquare, Pencil, Phone, User } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import Navbar from "./Navbar"
+import { z } from "zod";
+import { API_BASE_URL } from "../../config/api";
+import Navbar from "./Navbar";
 
 const schemacontact = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -29,10 +30,7 @@ const ContactUs = () => {
 
   const contactUser = async (data) => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/contact-us",
-        data,
-      );
+      const response = await axios.post(`${API_BASE_URL}/contact-us`, data);
 
       if (response?.data?.code === 200) {
         toast.success("Message sent successfully");

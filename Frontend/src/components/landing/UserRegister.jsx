@@ -1,36 +1,43 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import {
-  User,
-  Mail,
-  Phone,
-  KeyRound,
   ImagePlus,
+  KeyRound,
+  Mail,
   MapPinHouse,
+  Phone,
+  User,
 } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import axios from 'axios';
-import Navbar from './Navbar';
 import { toast } from "sonner";
+import { z } from "zod";
+import { API_BASE_URL } from "../../config/api";
+import Navbar from "./Navbar";
 
 const schema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email address"),
   contact: z.string().length(10, "Phone number must be at least 10 digits"),
-  password: z.string().min(6, "Password must be at least 6 characters").max(20, "Password must be at most 20 characters"),
+  password: z
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .max(20, "Password must be at most 20 characters"),
   address: z.string().min(1, "Address is required"),
-  profile : z.any().optional()
+  profile: z.any().optional(),
 });
 
 const UserRegister = () => {
-  const { register, handleSubmit, formState: { errors }, } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(schema),
   });
 
   const handleRegistration = async (data) => {
     try {
       const formData = new FormData();
-      console.log("FORM DATA:", data);
       formData.append("name", data.name);
       formData.append("email", data.email);
       formData.append("contact", data.contact);
@@ -40,11 +47,15 @@ const UserRegister = () => {
         formData.append("profile", data.profile[0]);
       }
 
-      const response = await axios.post("http://localhost:8080/api/user-register", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      });
+      const response = await axios.post(
+        `${API_BASE_URL}/user-register`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
 
       if (response.status === 200) {
         toast.success("Registration successful!");
@@ -57,7 +68,7 @@ const UserRegister = () => {
   return (
     <>
       <Navbar />
-      <div className=" flex items-center justify-center bg-gray-50 p-18">
+      <div className="flex items-center justify-center bg-gray-50 p-6 md:p-10 lg:p-16">
         <div className="w-full max-w-3xl bg-white shadow-xl rounded-2xl p-8">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
             Register Here
@@ -217,6 +228,6 @@ const UserRegister = () => {
       </div>
     </>
   );
-}
+};
 
-export default UserRegister
+export default UserRegister;

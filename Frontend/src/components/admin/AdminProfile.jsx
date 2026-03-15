@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
-import Navbar from "../landing/NavBar";
-import { User, Mail, Phone, Lock, MapPin, Image } from "lucide-react";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import axios from "axios";
+import { Image, Lock, Mail, MapPin, Phone, User } from "lucide-react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { z } from "zod";
+import { API_BASE_URL } from "../../config/api";
+import Navbar from "../landing/Navbar";
 
 const schema = z.object({
   name: z.string().min(2, "Name required"),
@@ -57,10 +58,7 @@ const AdminProfile = () => {
 
       formData.append("userId", userData?._id);
 
-      const response = await axios.put(
-        "http://localhost:8080/api/user-update",
-        formData,
-      );
+      const response = await axios.put(`${API_BASE_URL}/user-update`, formData);
 
       if (response?.data?.code === 200) {
         toast.success("Profile updated successfully");

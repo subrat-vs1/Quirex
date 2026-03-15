@@ -1,10 +1,10 @@
-import Navbar from './NavBar'
-import Slider from './Slider'
-import Counter from './Counter'
-import Services from './Services'
-import Property from './Property'
-import Animities from './Animities'
-import Testimonial from './Testimonial'
+import Animities from "./Animities";
+import Counter from "./Counter";
+import Navbar from "./Navbar";
+import Property from "./Property";
+import Services from "./Services";
+import Slider from "./Slider";
+import Testimonial from "./Testimonial";
 
 const Home = () => {
   return (
@@ -18,6 +18,6 @@ const Home = () => {
       <Testimonial />
     </>
   );
-}
+};
 
-export default Home
+export default Home;

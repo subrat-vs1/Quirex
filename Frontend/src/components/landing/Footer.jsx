@@ -1,22 +1,25 @@
 import {
+  Facebook,
+  Linkedin,
+  Mail,
   MapPin,
   Phone,
-  Mail,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Youtube,
   Send,
+  Twitter,
+  Youtube,
 } from "lucide-react";
 
 const Footer = () => {
   return (
     <footer className="bg-gray-950 text-gray-300 pt-12">
       <div className="max-w-8xl mx-auto px-6 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-12">
-
         <div className="lg:col-span-3 sm:col-span-2">
           <div className="flex items-center mb-3 text-white font-bold text-4xl">
-            <img src="/img/favicon.png" className="mr-2 w-12 object-contain" />
+            <img
+              src="/img/brand-favicon.png"
+              alt="Quirex Logo"
+              className="mr-2 w-12 object-contain"
+            />
             Quirex
           </div>
 
@@ -117,7 +120,11 @@ const Footer = () => {
 
           <h6 className="text-white text-sm mb-2">We Accept</h6>
 
-          <img src="/img/payment-4.png" className="lg:col-span-3" />
+          <img
+            src="/img/payment-methods.png"
+            alt="Payment Methods"
+            className="lg:col-span-3"
+          />
         </div>
       </div>
 
