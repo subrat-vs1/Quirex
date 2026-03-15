@@ -41,6 +41,62 @@ npm run dev
 Frontend runs on Vite default port (usually 5173).
 Backend runs on port 8080 by default.
 
+
+## Project Structure (High-Level)
+
+```text
+Quirex/
+  Backend/
+    config/
+    model/
+    routes/
+    uploads/
+    index.js
+    package.json
+
+  Frontend/
+    public/
+    src/
+      components/
+        landing/
+        admin/
+        users/
+      App.jsx
+      main.jsx
+    package.json
+```
+
+## Contributing
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Follow existing code style and folder conventions.
+4. Add or update docs for API/feature changes.
+5. Submit a pull request with clear change summary and screenshots if UI is affected.
+
+## License
+
+ISC (based on current backend package metadata). Update this section if repository licensing changes.
+
+## Contact
+
+For project discussions, issues, or portfolio inquiries, open a GitHub issue in this repository or contact the project maintainer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Deployment (GitHub + Render + Vercel)
 
 ## 1. Push Code to GitHub
@@ -128,67 +184,3 @@ VITE_NODE_ENV=development
 - `VITE_MEDIA_BASE_URL=https://your-backend-service.onrender.com`
 - `VITE_APP_NAME=Quirex`
 - `VITE_NODE_ENV=production`
-
-### Important Notes
-
-- Never commit `.env` files to source control.
-- Commit only `.env.example` templates.
-- Backend now supports `PORT`, `MONGODB_URI`, and `CORS_ORIGINS` via environment variables for Render deployment.
-- Current frontend code contains hardcoded localhost API URLs in multiple components. For production hosting, replace these with environment-based URLs (`import.meta.env.VITE_API_BASE_URL`) as described in [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md).
-
-## Authentication Summary
-
-- Login endpoint validates email/password and returns user object including `userType`.
-- Frontend stores user session data in `localStorage` under key `userInfo`.
-- Role-based route visibility is controlled in the frontend (`admin` vs `user`).
-- No JWT or server-side session middleware is currently enforced in API routes.
-
-For flow details and security recommendations, see [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md#authentication-and-authorization-flow).
-
-## Project Structure (High-Level)
-
-```text
-Quirex/
-  Backend/
-    config/
-    model/
-    routes/
-    uploads/
-    index.js
-    package.json
-  Frontend/
-    public/
-    src/
-      components/
-        landing/
-        admin/
-        users/
-      App.jsx
-      main.jsx
-    package.json
-```
-
-Note: The synopsis refers to `components/landingPage`, `components/admin`, and `components/user`. The implementation currently uses `components/landing`, `components/admin`, and `components/users`.
-
-## Documentation Set
-
-- [README.md](README.md): setup, features, contribution overview
-- [SRS.md](SRS.md): software requirements specification
-- [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md): architecture, workflows, deployment, troubleshooting
-- [API_DOCUMENTATION.md](API_DOCUMENTATION.md): full endpoint reference
-
-## Contributing
-
-1. Fork the repository.
-2. Create a feature branch.
-3. Follow existing code style and folder conventions.
-4. Add or update docs for API/feature changes.
-5. Submit a pull request with clear change summary and screenshots if UI is affected.
-
-## License
-
-ISC (based on current backend package metadata). Update this section if repository licensing changes.
-
-## Contact
-
-For project discussions, issues, or portfolio inquiries, open a GitHub issue in this repository or contact the project maintainer.
