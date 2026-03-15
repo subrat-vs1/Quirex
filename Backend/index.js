@@ -21,7 +21,11 @@ if (process.env.CORS_ORIGIN) {
   corsOrigins.push(process.env.CORS_ORIGIN.trim());
 }
 
-const uniqueOrigins = [...new Set(corsOrigins.filter(Boolean))];
+const normalize = (url) => url.replace(/\/$/, "");
+
+const uniqueOrigins = [
+  ...new Set(corsOrigins.filter(Boolean).map(normalize))
+];
 
 app.use(
   cors({

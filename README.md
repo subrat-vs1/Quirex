@@ -41,109 +41,6 @@ npm run dev
 Frontend runs on Vite default port (usually 5173).
 Backend runs on port 8080 by default.
 
-## Deployment (GitHub + Render + Vercel)
-
-## 1. Push Code to GitHub
-
-1. Create a GitHub repository.
-2. Push this project to the repository.
-3. Confirm both `Backend` and `Frontend` folders are in the default branch.
-
-## 2. Deploy Backend to Render
-
-1. In Render, create a new **Web Service** from your GitHub repository.
-2. Configure:
-
-- Root Directory: `Backend`
-- Build Command: `npm install`
-- Start Command: `npm start`
-
-3. Add environment variables in Render dashboard (see backend list below).
-4. Deploy and copy the generated backend URL (example: `https://quirex-api.onrender.com`).
-
-## 3. Deploy Frontend to Vercel
-
-1. In Vercel, import the same GitHub repository.
-2. Configure:
-
-- Root Directory: `Frontend`
-- Framework Preset: `Vite`
-- Build Command: `npm run build`
-- Output Directory: `dist`
-
-3. Add frontend environment variables in Vercel (see frontend list below).
-4. Deploy and note your frontend domain (example: `https://quirex.vercel.app`).
-
-## 4. Configure CORS for Production
-
-In Render backend environment variables, set `CORS_ORIGINS` to include your Vercel domain and local development URL:
-
-```env
-CORS_ORIGINS=http://localhost:5173,https://your-frontend-project.vercel.app
-```
-
-Redeploy backend after updating environment variables.
-
-## Environment Variables
-
-Create `.env` files in both [Backend/.env.example](Backend/.env.example) and [Frontend/.env.example](Frontend/.env.example) locations by copying their example templates.
-
-### Backend `.env` Template
-
-```env
-PORT=8080
-NODE_ENV=development
-MONGODB_URI=mongodb://localhost:27017/Quirex
-CORS_ORIGINS=http://localhost:5173,https://your-frontend-project.vercel.app
-CORS_ORIGIN=http://localhost:5173
-UPLOAD_DIR=uploads
-MAX_FILE_SIZE_MB=10
-JWT_SECRET=replace_with_strong_secret
-JWT_EXPIRES_IN=1d
-```
-
-### Frontend `.env` Template
-
-```env
-VITE_API_BASE_URL=http://localhost:8080/api
-VITE_MEDIA_BASE_URL=http://localhost:8080
-VITE_APP_NAME=Quirex
-VITE_NODE_ENV=development
-```
-
-### Render Backend Environment Variables (Required)
-
-- `PORT` (Render sets this automatically)
-- `NODE_ENV=production`
-- `MONGODB_URI=<your-mongodb-connection-string>`
-- `CORS_ORIGINS=http://localhost:5173,https://your-frontend-project.vercel.app`
-- `UPLOAD_DIR=uploads`
-- `MAX_FILE_SIZE_MB=10`
-- `JWT_SECRET=<strong-random-secret>`
-- `JWT_EXPIRES_IN=1d`
-
-### Vercel Frontend Environment Variables (Required)
-
-- `VITE_API_BASE_URL=https://your-backend-service.onrender.com/api`
-- `VITE_MEDIA_BASE_URL=https://your-backend-service.onrender.com`
-- `VITE_APP_NAME=Quirex`
-- `VITE_NODE_ENV=production`
-
-### Important Notes
-
-- Never commit `.env` files to source control.
-- Commit only `.env.example` templates.
-- Backend now supports `PORT`, `MONGODB_URI`, and `CORS_ORIGINS` via environment variables for Render deployment.
-- Current frontend code contains hardcoded localhost API URLs in multiple components. For production hosting, replace these with environment-based URLs (`import.meta.env.VITE_API_BASE_URL`) as described in [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md).
-
-## Authentication Summary
-
-- Login endpoint validates email/password and returns user object including `userType`.
-- Frontend stores user session data in `localStorage` under key `userInfo`.
-- Role-based route visibility is controlled in the frontend (`admin` vs `user`).
-- No JWT or server-side session middleware is currently enforced in API routes.
-
-For flow details and security recommendations, see [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md#authentication-and-authorization-flow).
 
 ## Project Structure (High-Level)
 
@@ -156,6 +53,7 @@ Quirex/
     uploads/
     index.js
     package.json
+
   Frontend/
     public/
     src/
@@ -167,15 +65,6 @@ Quirex/
       main.jsx
     package.json
 ```
-
-Note: The synopsis refers to `components/landingPage`, `components/admin`, and `components/user`. The implementation currently uses `components/landing`, `components/admin`, and `components/users`.
-
-## Documentation Set
-
-- [README.md](README.md): setup, features, contribution overview
-- [SRS.md](SRS.md): software requirements specification
-- [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md): architecture, workflows, deployment, troubleshooting
-- [API_DOCUMENTATION.md](API_DOCUMENTATION.md): full endpoint reference
 
 ## Contributing
 
