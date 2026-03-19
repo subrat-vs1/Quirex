@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../landing/NavBar";
+import Navbar from "../landing/Navbar";
 import axios from "axios";
 import { toast } from "sonner";
 import { Eye } from "lucide-react";

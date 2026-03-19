@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "../landing/NavBar";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import Navbar from "../landing/Navbar";
 
 const UserBoughtList = () => {
   const [list, setList] = useState([]);
@@ -23,7 +24,7 @@ const UserBoughtList = () => {
         setList(response.data.data);
       }
     } catch (error) {
-      console.error("Fetch failed");
+      toast.error("Failed to load bought properties");
     } finally {
       setLoading(false);
     }

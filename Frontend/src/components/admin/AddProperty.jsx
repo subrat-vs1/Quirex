@@ -205,6 +205,7 @@ const AddProperty = () => {
                   <input
                     {...register("pic")}
                     type="file"
+                    accept="image/*"
                     className="w-full text-sm"
                   />
                 </div>

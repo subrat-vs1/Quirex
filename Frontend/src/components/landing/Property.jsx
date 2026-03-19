@@ -1,10 +1,9 @@
-
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { BedDouble } from "lucide-react";
-import Navbar from "./Navbar";
-import { toast } from "sonner";
 import axios from "axios";
+import { BedDouble } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import Navbar from "./Navbar";
 
 const Property = () => {
   const [listData, setListData] = useState([]);
@@ -60,7 +59,7 @@ const Property = () => {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={`http://localhost:9000/img/${item?.pic}`}
+                  src={`http://localhost:8080/img/${item?.pic}`}
                   className="w-full h-52 object-cover group-hover:scale-105 transition duration-300"
                 />
                 <div

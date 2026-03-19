@@ -1,19 +1,19 @@
 import {
+  Facebook,
+  Linkedin,
+  Mail,
   MapPin,
   Phone,
-  Mail,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Youtube,
   Send,
+  Twitter,
+  Youtube,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="bg-gray-950 text-gray-300 pt-12">
       <div className="max-w-8xl mx-auto px-6 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-12">
-
         <div className="lg:col-span-3 sm:col-span-2">
           <div className="flex items-center mb-3 text-white font-bold text-4xl">
             <img src="/img/favicon.png" className="mr-2 w-12 object-contain" />
@@ -60,12 +60,12 @@ const Footer = () => {
         <div className="lg:col-span-2 sm:col-span-1">
           <h5 className="text-white font-semibold mb-3">Company</h5>
           <div className="flex flex-col space-y-2 text-sm">
-            <a href="#">About</a>
-            <a href="#">Blog</a>
-            <a href="#">All Products</a>
-            <a href="#">Locations Map</a>
-            <a href="#">FAQ</a>
-            <a href="#">Contact us</a>
+            <Link to="/about">About</Link>
+            <Link to="/services">Services</Link>
+            <Link to="/property">All Properties</Link>
+            <Link to="/">Locations Map</Link>
+            <Link to="/">FAQ</Link>
+            <Link to="/ContactUs">Contact us</Link>
           </div>
         </div>
 
@@ -73,12 +73,12 @@ const Footer = () => {
         <div className="lg:col-span-2 sm:col-span-1">
           <h5 className="text-white font-semibold mb-3">Services</h5>
           <div className="flex flex-col space-y-2 text-sm">
-            <a href="#">Order tracking</a>
-            <a href="#">Wish List</a>
-            <a href="#">Login</a>
-            <a href="#">My account</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Promotional Offers</a>
+            <Link to="/services">Our Services</Link>
+            <Link to="/property">Property Listings</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
+            <Link to="/">Terms & Conditions</Link>
+            <Link to="/">Promotional Offers</Link>
           </div>
         </div>
 
@@ -86,12 +86,12 @@ const Footer = () => {
         <div className="lg:col-span-2 sm:col-span-1">
           <h5 className="text-white font-semibold mb-3">Customer Care</h5>
           <div className="flex flex-col space-y-2 text-sm">
-            <a href="#">Login</a>
-            <a href="#">My account</a>
-            <a href="#">Wish List</a>
-            <a href="#">Order tracking</a>
-            <a href="#">FAQ</a>
-            <a href="#">Contact us</a>
+            <Link to="/login">Login</Link>
+            <Link to="/register">My account</Link>
+            <Link to="/property">Wish List</Link>
+            <Link to="/property">Order tracking</Link>
+            <Link to="/">FAQ</Link>
+            <Link to="/ContactUs">Contact us</Link>
           </div>
         </div>
 
@@ -132,9 +132,9 @@ const Footer = () => {
           </div>
 
           <div className="flex gap-4 mt-2 md:mt-0">
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Claim</a>
-            <a href="#">Privacy & Policy</a>
+            <Link to="/">Terms & Conditions</Link>
+            <Link to="/">Claim</Link>
+            <Link to="/">Privacy & Policy</Link>
           </div>
         </div>
       </div>

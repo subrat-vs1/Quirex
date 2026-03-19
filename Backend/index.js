@@ -43,6 +43,7 @@ app.use(
 
 const PORT = Number(process.env.PORT) || 8080;
 
+app.use("/img", express.static("uploads"));
 app.use("/Frontend/public/img/", express.static("uploads"));
 app.use("/api", adminRoute);
 app.use("/api", router);

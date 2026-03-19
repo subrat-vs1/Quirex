@@ -1,29 +1,36 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import {
-  User,
-  Mail,
-  Phone,
-  KeyRound,
   ImagePlus,
+  KeyRound,
+  Mail,
   MapPinHouse,
+  Phone,
+  User,
 } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import axios from 'axios';
-import Navbar from './Navbar';
 import { toast } from "sonner";
+import { z } from "zod";
+import Navbar from "./Navbar";
 
 const schema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email address"),
   contact: z.string().length(10, "Phone number must be at least 10 digits"),
-  password: z.string().min(6, "Password must be at least 6 characters").max(20, "Password must be at most 20 characters"),
+  password: z
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .max(20, "Password must be at most 20 characters"),
   address: z.string().min(1, "Address is required"),
-  profile : z.any().optional()
+  profile: z.any().optional(),
 });
 
 const UserRegister = () => {
-  const { register, handleSubmit, formState: { errors }, } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(schema),
   });
 
@@ -40,14 +47,22 @@ const UserRegister = () => {
         formData.append("profile", data.profile[0]);
       }
 
-      const response = await axios.post("http://localhost:8080/api/user-register", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      });
+      const response = await axios.post(
+        "http://localhost:8080/api/user-register",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
 
-      if (response.status === 200) {
+      if (response?.data?.code === 200) {
         toast.success("Registration successful!");
+      } else {
+        toast.error(
+          response?.data?.message || "Registration failed. Please try again.",
+        );
       }
     } catch (error) {
       toast.error("Registration failed. Please try again.");
@@ -217,6 +232,6 @@ const UserRegister = () => {
       </div>
     </>
   );
-}
+};
 
-export default UserRegister
+export default UserRegister;

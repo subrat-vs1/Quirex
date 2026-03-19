@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "../landing/NavBar";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import Navbar from "../landing/Navbar";
 
 const UserList = () => {
   const [data, setData] = useState([]);
@@ -19,7 +20,7 @@ const UserList = () => {
         setData(response.data.data);
       }
     } catch (error) {
-      console.error("Failed to load users");
+      toast.error("Failed to load users");
     }
   };
 
